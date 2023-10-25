@@ -36,7 +36,7 @@ async function uploadProduct(req, res) {
 async function updateProduct(req, res) {
   const { id, name, price, color, description, isAvailable } = req.body;
   const result = await Product.findOneAndUpdate(
-    { id: id },
+    { _id: id },
     {
       name: name,
       price: price,
@@ -45,6 +45,8 @@ async function updateProduct(req, res) {
       isAavailable: isAvailable,
     }
   );
+
+  console.log(req.body);
 
   res.send(result);
   res.end();
