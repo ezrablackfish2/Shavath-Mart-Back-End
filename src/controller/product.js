@@ -59,4 +59,9 @@ async function deleteProduct(req, res) {
   res.end();
 }
 
-module.exports = { getAllProducts, uploadProduct };
+module.exports = {
+  getAllProducts,
+  uploadProduct,
+  updateProduct,
+  deleteProduct,
+};
