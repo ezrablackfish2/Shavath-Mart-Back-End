@@ -23,7 +23,7 @@ async function uploadProduct(req, res) {
     price: price,
     color: color,
     description: description,
-    isAavailable: isAvailable,
+    isAvailable: isAvailable,
   };
 
   const result = await Product.create(obj);
