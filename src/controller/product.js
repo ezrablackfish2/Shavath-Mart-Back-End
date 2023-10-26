@@ -45,7 +45,7 @@ async function updateProduct(req, res) {
       color: color,
       category: category,
       description: description,
-      isAavailable: isAvailable,
+      isAvailable: isAvailable,
     }
   );
 
