@@ -40,12 +40,6 @@ async function updateProduct(req, res) {
     { _id: id },
     {
       name: name,
-      img: {
-        data: fs.readFileSync(
-          path.join(__dirname + "../../../uploads/" + req.file.filename)
-        ),
-        contentType: "image/png",
-      },
       price: price,
       color: color,
       category: category,
