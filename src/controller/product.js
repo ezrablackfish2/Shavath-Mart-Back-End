@@ -11,7 +11,7 @@ async function getAllProducts(req, res) {
 }
 
 async function uploadProduct(req, res) {
-  const { name, price, color, description, isAvailable } = req.body;
+  const { name, price, color, category, description, isAvailable } = req.body;
   const obj = {
     name: name,
     img: {
@@ -22,6 +22,7 @@ async function uploadProduct(req, res) {
     },
     price: price,
     color: color,
+    category: category,
     description: description,
     isAvailable: isAvailable,
   };
