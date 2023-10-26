@@ -1,8 +1,7 @@
 const Review = require("../models/Review");
 
 async function getReviewById(req, res) {
-  const { productId } = req.query;
-  const result = await Review.find({ productId: productId });
+  const result = await Review.find();
 
   res.send(result);
   res.end();
