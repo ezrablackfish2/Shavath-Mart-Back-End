@@ -34,11 +34,18 @@ async function uploadProduct(req, res) {
 }
 
 async function updateProduct(req, res) {
-  const { id, name, price, color, category, description, isAvailable } = req.body;
+  const { id, name, price, color, category, description, isAvailable } =
+    req.body;
   const result = await Product.findOneAndUpdate(
     { _id: id },
     {
       name: name,
+      img: {
+        data: fs.readFileSync(
+          path.join(__dirname + "../../../uploads/" + req.file.filename)
+        ),
+        contentType: "image/png",
+      },
       price: price,
       color: color,
       category: category,
