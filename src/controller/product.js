@@ -57,7 +57,7 @@ async function updateProduct(req, res) {
 async function deleteProduct(req, res) {
   const { id } = req.body;
 
-  const result = await Product.findOneAndDelete({ id: id });
+  const result = await Product.findOneAndDelete({ _id: id });
 
   res.send(result);
   res.end();
