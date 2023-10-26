@@ -34,13 +34,14 @@ async function uploadProduct(req, res) {
 }
 
 async function updateProduct(req, res) {
-  const { id, name, price, color, description, isAvailable } = req.body;
+  const { id, name, price, color, category, description, isAvailable } = req.body;
   const result = await Product.findOneAndUpdate(
     { _id: id },
     {
       name: name,
       price: price,
       color: color,
+      category: category,
       description: description,
       isAavailable: isAvailable,
     }
