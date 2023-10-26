@@ -10,6 +10,8 @@ const {
   deleteProduct,
 } = require("../controller/product");
 
+const { getReviewById, submitReview } = require("../controller/review");
+
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -38,6 +40,14 @@ router.post("/update", (req, res) => {
 
 router.post("/delete", (req, res) => {
   deleteProduct(req, res);
+});
+
+router.post("/review", (req, res) => {
+  submitReview(req, res);
+});
+
+router.get("/reviews", (req, res) => {
+  getReviewById(req, res);
 });
 
 module.exports = router;
