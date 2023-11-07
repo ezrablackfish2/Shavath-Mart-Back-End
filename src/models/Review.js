@@ -1,16 +1,35 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
+//
+//const ReviewSchema = new mongoose.Schema({
+//  productId: {
+//    type: String,
+//    required: true,
+//  },
+//  message: {
+//    type: String,
+//    required: true,
+//  },
+//});
+//
+//const Review = mongoose.model("Review", ReviewSchema);
+//module.exports = Review;
 
-const ReviewSchema = new mongoose.Schema({
+// review.js
+
+
+const { DataTypes } = require('sequelize');
+const db = require('../config/db');
+
+const Review = db.define('Review', {
   productId: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   message: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 });
 
-const Review = mongoose.model("Review", ReviewSchema);
 module.exports = Review;
 

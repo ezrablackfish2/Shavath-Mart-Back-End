@@ -11,44 +11,30 @@
 //
 //module.exports =  connectDb
 
-const mysql = require('mysql2');
+const { Sequelize } = require('sequelize');
 
-const connectDb = async () => {
-  const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'ezra',
-    password: 'tutu@12345',
-    database: 'ezra',
-  });
+const sequelize = new Sequelize('ezra', 'ezra', 'tutu@12345', {
+  host: 'localhost',
+  dialect: 'mysql',
+});
 
-  db.connect((err) => {
-    if (err) {
-      console.error('Error connecting to MySQL:', err);
-      return;
-    }
-    console.log('Connected to MySQL');
-  });
+module.exports = sequelize;
 
-  // You can use the `db` connection to execute SQL queries in your application.
 
-  // For example, you can create a table (if it doesn't exist) using SQL like this:
-  const createTableQuery = `
-    CREATE TABLE IF NOT EXISTS ezra (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(255),
-      description TEXT
-    )
-  `;
 
-  db.query(createTableQuery, (err, results) => {
-    if (err) {
-      console.error('Error creating table:', err);
-      return;
-    }
-	  console.log("Table created");
-
-  });
-};
-
-module.exports = connectDb;
+//const mysql = require('mysql2/promise');
+//
+//const connectDb = async () => {
+//  const connection = await mysql.createConnection({
+//    host: 'localhost',
+//    user: 'ezra',
+//    password: 'tutu@12345',
+//    database: 'ezra',
+//  });
+//
+//  console.log('Db connected successfully');
+//  return connection;
+//}
+//
+//module.exports = connectDb;
 

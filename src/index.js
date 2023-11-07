@@ -6,10 +6,19 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 
-const connectDb = require("./config/db");
+const sequelize = require("./config/db");
 
 const app = express();
-connectDb();
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Database connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+})();
+
 
 const corsOptions = {
   origin: '*',
