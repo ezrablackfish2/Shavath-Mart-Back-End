@@ -38,7 +38,7 @@ const Product = sequelize.define('Product', {
     allowNull: false,
   },
   img: {
-    type: DataTypes.BLOB,
+    type: DataTypes.BLOB('long')
   },
   price: DataTypes.STRING,
   color: DataTypes.STRING,
