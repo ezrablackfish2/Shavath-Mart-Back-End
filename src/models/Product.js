@@ -47,5 +47,13 @@ const Product = sequelize.define('Product', {
   isAvailable: DataTypes.BOOLEAN,
 });
 
+sequelize.sync()
+  .then(() => {
+    console.log('Tables created or updated.');
+  })
+  .catch(err => {
+    console.error('Error syncing Tables:', err);
+  });
+
 module.exports = Product;
 

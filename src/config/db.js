@@ -21,6 +21,25 @@ const sequelize = new Sequelize('ezra', 'ezra', 'tutu@12345', {
 module.exports = sequelize;
 
 
+//const { Sequelize } = require('sequelize');
+//
+//const sequelize = new Sequelize('ezra', 'ezra', 'tutu@12345' {
+//  host: 'localhost',
+//  dialect: 'mysql',
+//});
+//
+//sequelize.query('CREATE DATABASE IF NOT EXISTS ezra;')
+//  .then(() => {
+//    console.log('Database "ezra" created or already exists.');
+//  })
+//  .catch(err => {
+//    console.error('Error creating database "ezra":', err);
+//  });
+//
+//module.exports = sequelize;
+
+
+
 
 //const mysql = require('mysql2/promise');
 //
