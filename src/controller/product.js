@@ -85,7 +85,10 @@ async function getAllProducts(req, res) {
 
 async function uploadProduct(req, res) {
   const { name, price, color, category, description, isAvailable } = req.body;
-  const imageBuffer = fs.readFileSync(path.join(__dirname + '../../../uploads/' + req.file.filename));
+	const imageBuffer = "";
+	if (req.file != undefined) {
+  imageBuffer = fs.readFileSync(path.join(__dirname + '../../../uploads/' + req.file.filename));
+	}
 
   const product = await Product.create({
     name,
