@@ -13,7 +13,7 @@
 
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('shavath', 'shavath', 'Shavath@1234', {
+const sequelize = new Sequelize('shavattc_shavath', 'shavattc_hiwot', 'hiwot@12345', {
   host: 'localhost',
   dialect: 'mysql',
 });
