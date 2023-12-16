@@ -1,30 +1,59 @@
-const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
+//
+//const ProductSchema = new mongoose.Schema({
+//  name: {
+//    type: String,
+//    required: true,
+//  },
+//  img: {
+//    data: Buffer,
+//    contentType: String,
+//  },
+//  price: {
+//    type: String,
+//  },
+//  color: {
+//    type: String,
+//  },
+//  category: {
+//    type: String,
+//  },
+//  description: {
+//    type: String,
+//  },
+//  isAvailable: {
+//    type: Boolean,
+//  },
+//});
+//
+//const Product = mongoose.model("Product", ProductSchema);
+//module.exports = Product;
 
-const ProductSchema = new mongoose.Schema({
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/db');
+
+const Product = sequelize.define('Product', {
   name: {
-    type: String,
-    required: true,
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   img: {
-    data: Buffer,
-    contentType: String,
+    type: DataTypes.BLOB('long')
   },
-  price: {
-    type: String,
-  },
-  color: {
-    type: String,
-  },
-  category: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  isAvailable: {
-    type: Boolean,
-  },
+  price: DataTypes.STRING,
+  color: DataTypes.STRING,
+  category: DataTypes.STRING,
+  description: DataTypes.STRING,
+  isAvailable: DataTypes.BOOLEAN,
 });
 
-const Product = mongoose.model("Product", ProductSchema);
+sequelize.sync()
+  .then(() => {
+    console.log('Tables created or updated.');
+  })
+  .catch(err => {
+    console.error('Error syncing Tables:', err);
+  });
+
 module.exports = Product;
+

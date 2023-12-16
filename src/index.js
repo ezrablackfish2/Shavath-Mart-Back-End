@@ -5,11 +5,21 @@ const cookieParser = require("cookie-parser");
 
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
+const heroRoute = require("./routes/hero");
 
-const connectDb = require("./config/db");
+const sequelize = require("./config/db");
 
 const app = express();
-connectDb();
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Database connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+})();
+
 
 const corsOptions = {
   origin: '*',
@@ -23,6 +33,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api", productRoute);
+app.use("/api/hero", heroRoute);
 
 app.listen(3000, () => {
   console.log("The application is running on 3000");
