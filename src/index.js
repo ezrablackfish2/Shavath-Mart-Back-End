@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 
 const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
+const heroRoute = require("./routes/hero");
 
 const sequelize = require("./config/db");
 
@@ -32,6 +33,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api", productRoute);
+app.use("/api/hero", heroRoute);
 
 app.listen(3000, () => {
   console.log("The application is running on 3000");

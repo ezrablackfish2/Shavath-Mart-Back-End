@@ -26,6 +26,18 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+const store = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "updates");
+  },
+  filename: (req, file, cb) => {
+    const exte = path.extname(file.originalname);
+    cb(null, file.fieldname + "-" + Date.now() + exte);
+  },
+});
+
+const update = multer({ storage: store });
+
 router.get("/", (req, res) => {
   getAllProducts(req, res);
 });
@@ -34,7 +46,7 @@ router.post("/upload", upload.single("img"), (req, res) => {
   uploadProduct(req, res);
 });
 
-router.post("/update", (req, res) => {
+router.put("/update/:id", update.single("img"), (req, res) => {
   updateProduct(req, res);
 });
 

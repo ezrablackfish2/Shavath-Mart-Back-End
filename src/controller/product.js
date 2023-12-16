@@ -107,12 +107,20 @@ async function uploadProduct(req, res) {
 }
 
 async function updateProduct(req, res) {
-  const { id, name, price, color, category, description, isAvailable } = req.body;
-
-  const [result] = await Product.update({
+ const { name, price, color, category, description, isAvailable } = req.body;
+	let imageBuffer = {
+	"type": "Buffer",
+	"data": ""
+	}
+	if (req.file != undefined) {
+  imageBuffer = fs.readFileSync(path.join(__dirname + '../../../updates/' + req.file.filename));
+	}
+	const id = req.params.id;
+  const result = await Product.update({
     name,
     price,
     color,
+    img: imageBuffer,
     category,
     description,
     isAvailable,
@@ -121,8 +129,9 @@ async function updateProduct(req, res) {
     returning: true,
   });
 
-//  res.json(result[1][0]);
+  res.json(result);
 }
+
 
 async function deleteProduct(req, res) {
   const { id } = req.body;
